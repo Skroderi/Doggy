@@ -8,6 +8,7 @@ var path = require("path");
 module.exports = {
   mode: "development",
   entry: "./src/js/index.js",
+  devtool: "source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/main-[contenthash:4].js"
@@ -18,7 +19,7 @@ module.exports = {
     overlay: true,
     openPage: "http://localhost:8080",
     open: true,
-    contentBase: path.join(__dirname, "assets")
+    contentBase: path.join(__dirname, "src", "assets")
   },
   module: {
     rules: [
@@ -52,7 +53,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: "./index.html" }),
+    new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new MiniCssExtractPlugin({
       filename: "css/[name]-[contenthash:4].css"
     }),

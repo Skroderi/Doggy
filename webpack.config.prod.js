@@ -2,19 +2,21 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 var path = require("path");
 
 module.exports = {
   mode: "production",
   entry: "./src/js/index.js",
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})]
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "js/main.js"
-  },
-  devServer: {
-    open: true,
-    contentBase: path.join(__dirname, "assets")
+    filename: "js/main.min.js"
   },
   module: {
     rules: [
@@ -47,9 +49,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: "./index.html" }),
+    new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new MiniCssExtractPlugin({
-      filename: "css/[name].css"
+      filename: "css/[name].min.css"
     }),
     new CopyPlugin([
       {
