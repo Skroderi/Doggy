@@ -1,0 +1,49 @@
+.featured {
+  display: block;
+  padding: $main-spacing;
+  border: 1px solid $border-color;
+  max-height: 50%;
+  width: 100%;
+}
+
+.featured-dog {
+  width: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 700px) {
+  .featured-dog {
+    width: 50%;
+  }
+}
+
+.featured-dog__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: $main-spacing;
+  filter: blur(10px);
+  height: 110%;
+  width: 110%;
+  margin: -5%;
+  background-size: contain;
+}
+.featured-dog__wrapper {
+  flex: 1;
+  height: 400px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.featured-dog__image {
+  position: relative;
+  max-height: 100%;
+  max-width: 100%;
+  z-index: 2;
+}
+.featured p {
+  text-align: center;
+  padding: $main-spacing;
+}
